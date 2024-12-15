@@ -25,7 +25,7 @@ Add the dependency:
 
 ```kotlin
 dependencies {
-    implementation("com.github.jetbrains:mcp-kotlin-sdk:main-SNAPSHOT")
+    implementation("com.github.JetBrains:mcp-kotlin-sdk:main-SNAPSHOT")
 }
 ```
 
