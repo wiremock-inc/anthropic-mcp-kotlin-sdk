@@ -134,7 +134,7 @@ fun Application.module() {
 
 ## Contributing
 
-Issues and pull requests are welcome on GitHub at https://github.com/e5l/mcp-kotlin-sdk.
+Issues and pull requests are welcome on GitHub at https://github.com/JetBrains/mcp-kotlin-sdk.
 
 ## License
 
