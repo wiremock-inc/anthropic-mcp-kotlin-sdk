@@ -64,24 +64,19 @@ publishing {
 }
 
 jreleaser {
-    project {
-        name.set(project.name)
-        version.set(project.version.toString())
-        description.set("Kotlin implementation of the Model Context Protocol (MCP)")
-        website.set("https://github.com/modelcontextprotocol/kotlin-sdk")
-        authors.set(listOf("Anthropic Team"))
-        license.set("MIT")
-    }
-
+    gitRootSearch = true
     strict.set(true)
 
     signing {
         active.set(Active.ALWAYS)
         armored.set(true)
+        artifacts.set(true)
     }
 
     deploy {
+        active.set(Active.ALWAYS)
         maven {
+            active.set(Active.ALWAYS)
             mavenCentral {
                 val ossrh by creating {
                     active.set(Active.ALWAYS)
@@ -89,6 +84,15 @@ jreleaser {
                     stagingRepository(layout.buildDirectory.dir("staging-deploy").get().asFile.path)
                 }
             }
+        }
+    }
+
+    release {
+        github {
+            skipRelease = true
+            skipTag = true
+            overwrite = false
+            token = "none"
         }
     }
 }
