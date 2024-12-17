@@ -64,19 +64,29 @@ publishing {
 }
 
 jreleaser {
+    project {
+        name.set(project.name)
+        version.set(project.version.toString())
+        description.set("Kotlin implementation of the Model Context Protocol (MCP)")
+        website.set("https://github.com/modelcontextprotocol/kotlin-sdk")
+        authors.set(listOf("Anthropic Team"))
+        license.set("MIT")
+    }
+
     strict.set(true)
 
     signing {
         active.set(Active.ALWAYS)
-        armored = true
+        armored.set(true)
     }
+
     deploy {
         maven {
             mavenCentral {
                 val ossrh by creating {
                     active.set(Active.ALWAYS)
                     url.set("https://central.sonatype.com/api/v1/publisher")
-                    stagingRepository("target/staging-deploy")
+                    stagingRepository(layout.buildDirectory.dir("staging-deploy").get().asFile.path)
                 }
             }
         }
