@@ -64,6 +64,8 @@ publishing {
 }
 
 jreleaser {
+    strict.set(true)
+
     signing {
         active.set(Active.ALWAYS)
         armored = true
