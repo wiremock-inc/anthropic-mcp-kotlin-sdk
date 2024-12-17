@@ -40,10 +40,10 @@ dependencies {
 }
 
 val ossrhUsername = System.getenv("OSSRH_USERNAME")
-    ?: project.findProperty("kotlin.mcp.sdk.packages.username") as String?
+    ?: project.findProperty("OSSRH_USERNAME") as String?
 
 val ossrhPassword = System.getenv("OSSRH_TOKEN")
-    ?: project.findProperty("kotlin.mcp.sdk.packages.password") as String?
+    ?: project.findProperty("OSSRH_TOKEN") as String?
 
 val sources = tasks.create<Jar>("sourcesJar") {
     from(sourceSets["main"].allSource)
@@ -52,8 +52,8 @@ val sources = tasks.create<Jar>("sourcesJar") {
 
 publishing {
     repositories {
-        maven {
-            name = "OSSRH"
+        maven(url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            name = "ossrh"
             credentials {
                 username = ossrhUsername
                 password = ossrhPassword
@@ -120,9 +120,9 @@ fun configureEmptyJavadocArtifact(): org.gradle.jvm.tasks.Jar {
 }
 
 fun MavenPublication.signPublicationIfKeyPresent() {
-    val keyId = project.getSensitiveProperty("libs.sign.key.id")
-    val signingKey = project.getSensitiveProperty("libs.sign.key.private")
-    val signingKeyPassphrase = project.getSensitiveProperty("libs.sign.passphrase")
+    val keyId = project.getSensitiveProperty("SIGNING_KEY_ID")
+    val signingKey = project.getSensitiveProperty("SIGNING_KEY_PRIVATE")
+    val signingKeyPassphrase = project.getSensitiveProperty("SIGNING_PASSPHRASE")
 
     if (!signingKey.isNullOrBlank()) {
         the<SigningExtension>().apply {
