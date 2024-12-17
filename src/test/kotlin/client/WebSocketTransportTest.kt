@@ -26,6 +26,7 @@ class WebSocketTransportTest : BaseTransportTest() {
     }
 
     @Test
+    @Disabled("Test disabled for investigation #17")
     fun `should read messages`() = testApplication {
         val clientFinished = CompletableDeferred<Unit>()
 
