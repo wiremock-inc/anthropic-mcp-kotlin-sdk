@@ -79,6 +79,7 @@ jreleaser {
             active.set(Active.ALWAYS)
             mavenCentral {
                 val ossrh by creating {
+                    applyMavenCentralRules = true
                     active.set(Active.ALWAYS)
                     url.set("https://central.sonatype.com/api/v1/publisher")
                     stagingRepository(layout.buildDirectory.dir("staging-deploy").get().asFile.path)

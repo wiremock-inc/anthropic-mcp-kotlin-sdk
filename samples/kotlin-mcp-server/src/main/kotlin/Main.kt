@@ -1,14 +1,3 @@
-import org.jetbrains.kotlinx.mcp.CallToolResult
-import org.jetbrains.kotlinx.mcp.GetPromptResult
-import org.jetbrains.kotlinx.mcp.Implementation
-import org.jetbrains.kotlinx.mcp.PromptArgument
-import org.jetbrains.kotlinx.mcp.PromptMessage
-import org.jetbrains.kotlinx.mcp.ReadResourceResult
-import org.jetbrains.kotlinx.mcp.Role
-import org.jetbrains.kotlinx.mcp.ServerCapabilities
-import org.jetbrains.kotlinx.mcp.TextContent
-import org.jetbrains.kotlinx.mcp.TextResourceContents
-import org.jetbrains.kotlinx.mcp.Tool
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.cio.*
@@ -17,14 +6,22 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.sse.*
 import io.ktor.util.collections.*
+import io.modelcontextprotocol.kotlin.sdk.*
+import io.modelcontextprotocol.kotlin.sdk.GetPromptResult
+import io.modelcontextprotocol.kotlin.sdk.Implementation
+import io.modelcontextprotocol.kotlin.sdk.PromptArgument
+import io.modelcontextprotocol.kotlin.sdk.PromptMessage
+import io.modelcontextprotocol.kotlin.sdk.Role
+import io.modelcontextprotocol.kotlin.sdk.ServerCapabilities
+import io.modelcontextprotocol.kotlin.sdk.Tool
+import io.modelcontextprotocol.kotlin.sdk.server.MCP
+import io.modelcontextprotocol.kotlin.sdk.server.SSEServerTransport
+import io.modelcontextprotocol.kotlin.sdk.server.Server
+import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
+import io.modelcontextprotocol.kotlin.sdk.server.StdioServerTransport
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
-import org.jetbrains.kotlinx.mcp.server.MCP
-import org.jetbrains.kotlinx.mcp.server.SSEServerTransport
-import org.jetbrains.kotlinx.mcp.server.Server
-import org.jetbrains.kotlinx.mcp.server.ServerOptions
-import org.jetbrains.kotlinx.mcp.server.StdioServerTransport
 
 /**
  * Start sse-server mcp on port 3001.
