@@ -38,7 +38,7 @@ jobs:
         run: ./gradlew build
 
       - name: Publish to OSSRH repository
-        run: ./gradlew jreleaserPublish
+        run: ./gradlew jreleaserUpload
         env:
           JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
