@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jreleaser.model.Active
+import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -35,6 +36,15 @@ publishing {
 
     repositories {
         maven(url = layout.buildDirectory.dir("staging-deploy"))
+
+        maven {
+            name = "GitHubPackages"
+            url = URI.create("https://maven.pkg.github.com/wiremock-inc/anthropic-mcp-kotlin-sdk")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
