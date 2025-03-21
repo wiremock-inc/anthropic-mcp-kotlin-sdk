@@ -17,7 +17,8 @@ plugins {
     alias(libs.plugins.kotlinx.binary.compatibility.validator)
 }
 
-group = "io.modelcontextprotocol"
+// Change this back to "io.modelcontextprotocol" before opening PRs against upstream
+group = "wiremock.io.modelcontextprotocol"
 version = "0.3.1"
 
 val mainSourcesJar = tasks.register<Jar>("mainSourcesJar") {
@@ -29,10 +30,6 @@ publishing {
     val javadocJar = configureEmptyJavadocArtifact()
 
     publications.withType(MavenPublication::class).all {
-        // Only change group ID for WireMock's GitHub Packages
-        if (name.contains("GitHubPackages")) {
-            groupId = "wiremock.io.modelcontextprotocol"
-        }
         pom.configureMavenCentralMetadata()
         signPublicationIfKeyPresent()
         artifact(javadocJar)
