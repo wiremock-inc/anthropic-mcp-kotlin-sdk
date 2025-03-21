@@ -29,6 +29,10 @@ publishing {
     val javadocJar = configureEmptyJavadocArtifact()
 
     publications.withType(MavenPublication::class).all {
+        // Only change group ID for WireMock's GitHub Packages
+        if (name.contains("GitHubPackages")) {
+            groupId = "wiremock.io.modelcontextprotocol"
+        }
         pom.configureMavenCentralMetadata()
         signPublicationIfKeyPresent()
         artifact(javadocJar)
